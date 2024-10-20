@@ -1,3 +1,8 @@
+![Azure Static Web Apps CI/CD](https://github.com/hftm-in2022/angular-blog-app-alexander-stucker/actions/workflows/azure-static-web-apps-witty-water-002704403.yml/badge.svg)
+![Update Angular Action](https://github.com/hftm-in2022/angular-blog-app-alexander-stucker/actions/workflows/ng-update.yml/badge.svg)
+![CodeQL](https://github.com/hftm-in2022/angular-blog-app-alexander-stucker/actions/workflows/codeql.yml/badge.svg)
+![Dependabot Updates](https://github.com/hftm-in2022/angular-blog-app-alexander-stucker/actions/workflows/dependabot/dependabot-updates/badge.svg)
+
 # Project Setup and Deployment Guide
 
 ## 1. Initial Setup of the Angular Project
