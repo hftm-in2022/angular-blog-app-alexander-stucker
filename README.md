@@ -1,29 +1,141 @@
-# angular-blog-app-alexander-stucker
+# Project Setup and Deployment Guide
 
-# BlogApp
+## 1. Initial Setup of the Angular Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
+### 1.1 Create a New Angular Project
 
-## Development server
+Create a new Angular project using SCSS as the CSS preprocessor:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```bash
+ng new angular-<your project name> --style=scss
+```
 
-## Code scaffolding
+### 1.1 Create a New Angular Project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Initialize the Git repository:
 
-## Build
+```bash
+git init
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Commit the project and publish it on GitHub:
 
-## Running unit tests
+```bash
+git add .
+git commit -m "Initial commit"
+git remote add origin <your remote repository>
+git push -u origin main
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 2. Setting Up Husky, Lint-Staged, CommitLint, and Prettier
 
-## Running end-to-end tests
+- Install the necessary packages:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 2.1 ESLint
 
-## Further help
+Install ESLint to ensure code quality and consistency:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+ng add @angular-eslint/schematics
+```
+
+### 2.2 Prettier
+
+Prettier is used for code formatting. Install Prettier:
+
+```bash
+npm install prettier --save-dev^
+```
+
+Add the following Lines in package.json to format code with Prettier:
+
+```bash
+"scripts": {
+ "format": "npx prettier --write ./src/app/*"
+}
+```
+
+### 2.3 Environments für Angular generieren
+
+Generate environments for Angular to manage different configurations:
+
+```bash
+ng generate environments^
+```
+
+### 2.4 Commitlint
+
+CommitLint ensures that all commit messages follow a specific convention. Install CommitLint:
+
+```bash
+npm install @commitlint/cli @commitlint/config-conventional^
+```
+
+Add the following lines to package.json:
+
+```bash
+"commitlint": {
+ "extends": [
+   "@commitlint/config-conventional"
+ ]
+}
+```
+
+### 2.5 Lint-staged
+
+Lint-Staged allows you to run linters (e.g., ESLint, Prettier) only on staged files before committing. Install it:
+
+```bash
+npm install --save-dev lint-staged^
+```
+
+Add Lint-Staged configuration to package.json:
+
+```bash
+"lint-staged": {
+ "*.{ts,js,html}": "eslint --cache --fix",
+ "*.{ts,js,html,css,scss,less,md}": "prettier --write"
+}
+```
+
+### 2.6 Husky
+
+Husky allows you to easily run Git hooks, like running linting before each commit. Install Husky:
+
+```bash
+npm install --save-dev husky^
+npx husky init
+```
+
+Add the following Lines to package.json to prepare Husky after installation:
+
+```bash
+"scripts": {
+ "prepare": "husky"
+}
+```
+
+```bash
+npm run prepare
+echo 'npx --no-install commitlint --edit "$1"' > .husky/commit-msg
+echo 'npx --no-install lint-staged' > .husky/pre-commit
+```
+
+Ensure both .husky/commit-msg and .husky/pre-commit files are saved with UTF-8 encoding.
+
+## 3. Deployment to Azure using GitHub Actions
+
+### 3.1 Install Azure Plugin for Visual Studio Code
+
+Install the Azure Plugin for Visual Studio Code to enable easy deployment to Azure.
+
+### 3.2 Create an Azure Static Web App
+
+1. Open the Azure tab in Visual Studio Code.
+2. Create a new Static Web App:
+
+   - Select the resource group.
+   - Enter a name for the Static Web App.
+   - Choose Angular as the framework.
+   - For the directory, enter /.
+   - For the build output directory, enter `dist/<your-app-name>/browser`.
