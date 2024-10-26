@@ -1,37 +1,39 @@
-<h1>{{ title }}</h1>
+<div class="container">
+  <h1>{{ title }}</h1>
 
-<!-- (click) Event Binding -->
-<button mat-raised-button color="primary" (click)="toggleVisibility()">
-  {{ isVisible ? "Text verstecken" : "Text anzeigen" }}
-</button>
+  <!-- Check if there are any blogs to display -->
+  <div *ngIf="blogs.length > 0; else noBlogs">
+    <div *ngFor="let blog of blogs" class="blog-card">
+      <h2>{{ blog.title }}</h2>
+      <p><strong>Author:</strong> {{ blog.author }}</p>
+      <p><strong>Created At:</strong> {{ blog.createdAt | date }}</p>
 
-<!-- NgIf and ngClass -->
-<div
-  *ngIf="isVisible"
-  [ngClass]="{ 'visible-class': isVisible, 'hidden-class': !isVisible }"
->
-  <p>Dieser Text wird ausgeblendet</p>
-</div>
+      <!-- Display header image if it exists -->
+      <img
+        *ngIf="blog.headerImageUrl"
+        [src]="blog.headerImageUrl"
+        alt="{{ blog.title }}"
+        class="blog-image"
+      />
 
-<!-- NgStyle -->
-<mat-card>
-  <div [ngStyle]="{ color: isVisible ? 'green' : 'red' }">
-    {{
-      isVisible ? "Der Text ist ersichtlich" : "Der Text ist nicht ersichtlich"
-    }}
+      <!-- Show content preview -->
+      <p>{{ blog.contentPreview }}</p>
+
+      <!-- Comments Section -->
+      <div *ngIf="blog.comments?.length">
+        <h3>Comments</h3>
+        <ul>
+          <li *ngFor="let comment of blog.comments">
+            <strong>{{ comment.author }}:</strong> {{ comment.content }}
+            <em>({{ comment.createdAt | date: "short" }})</em>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-</mat-card>
 
-<!-- NgFor -->
-<mat-card>
-  <mat-list>
-    <mat-list-item *ngFor="let item of items">{{ item }}</mat-list-item>
-  </mat-list>
-</mat-card>
-
-<!-- NgModel (2-way binding) -->
-<mat-form-field appearance="fill">
-  <mat-label>Textfeld für deinen Text</mat-label>
-  <input matInput [(ngModel)]="inputText" />
-</mat-form-field>
-<p>Du hast eingegeben: {{ inputText }}</p>
+  <!-- Template to display when no blogs are available -->
+  <ng-template #noBlogs>
+    <p>No blogs available.</p>
+  </ng-template>
+</div>
