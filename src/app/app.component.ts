@@ -25,10 +25,8 @@ export class AppComponent implements OnInit {
   onGetBlogs(): void {
     this.blogService.getBlogs().subscribe({
       next: (response) => {
-        console.log(response);
         this.blogs = response;
       },
-      complete: () => console.log('Done'),
     });
   }
 }
