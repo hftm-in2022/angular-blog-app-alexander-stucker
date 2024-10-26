@@ -20,24 +20,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.onGetBlogs();
-    this.onGetBlog();
   }
 
   onGetBlogs(): void {
     this.blogService.getBlogs().subscribe({
       next: (response) => {
         console.log(response);
-        this.blogs = Array.isArray(response) ? response : [response];
+        this.blogs = response;
       },
-      error: (error) => console.log(error),
-      complete: () => console.log('Done'),
-    });
-  }
-
-  onGetBlog(): void {
-    this.blogService.getBlogs().subscribe({
-      next: (response) => console.log(response),
-      error: (error) => console.log(error),
       complete: () => console.log('Done'),
     });
   }
