@@ -4,16 +4,17 @@ import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BlogService } from './service/blog.service';
 import { Blog } from './interface/blog';
+import { BlogCardComponent } from './blog-card/blog-card.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, FormsModule],
+  imports: [RouterOutlet, CommonModule, FormsModule, BlogCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-  title = 'Demo App Alex';
+  title = 'Blogg App Alex';
   blogs: Blog[] = [];
 
   constructor(private blogService: BlogService) {}

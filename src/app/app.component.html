@@ -1,39 +1,23 @@
-<div class="container">
+<div class="top-menu">
+  <img
+    class="logo"
+    src="https://cdn-icons-png.flaticon.com/512/9908/9908191.png"
+    alt="Logo"
+  />
   <h1>{{ title }}</h1>
+</div>
 
-  <!-- Check if there are any blogs to display -->
-  <div *ngIf="blogs.length > 0; else noBlogs">
-    <div *ngFor="let blog of blogs" class="blog-card">
-      <h2>{{ blog.title }}</h2>
-      <p><strong>Author:</strong> {{ blog.author }}</p>
-      <p><strong>Created At:</strong> {{ blog.createdAt | date }}</p>
-
-      <!-- Display header image if it exists -->
-      <img
-        *ngIf="blog.headerImageUrl"
-        [src]="blog.headerImageUrl"
-        alt="{{ blog.title }}"
-        class="blog-image"
-      />
-
-      <!-- Show content preview -->
-      <p>{{ blog.contentPreview }}</p>
-
-      <!-- Comments Section -->
-      <div *ngIf="blog.comments?.length">
-        <h3>Comments</h3>
-        <ul>
-          <li *ngFor="let comment of blog.comments">
-            <strong>{{ comment.author }}:</strong> {{ comment.content }}
-            <em>({{ comment.createdAt | date: "short" }})</em>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <!-- Template to display when no blogs are available -->
-  <ng-template #noBlogs>
-    <p>No blogs available.</p>
-  </ng-template>
+<div class="blogs">
+  @for (blog of blogs; track blog.id) {
+    <app-blog-card
+      [title]="blog.title"
+      [author]="blog.author"
+      [comments]="blog.comments"
+      [contentPreview]="blog.contentPreview"
+      [createdAt]="blog.createdAt"
+      [headerImageUrl]="blog.headerImageUrl"
+      [likes]="blog.likes"
+    >
+    </app-blog-card>
+  }
 </div>
