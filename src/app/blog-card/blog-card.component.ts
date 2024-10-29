@@ -16,6 +16,6 @@ export class BlogCardComponent {
   @Input() comments!: number;
   @Input() contentPreview!: string;
   @Input() createdAt!: string;
-  @Input() headerImageUrl!: string;
+  @Input() headerImageUrl?: string;
   @Input() likes!: number;
 }
