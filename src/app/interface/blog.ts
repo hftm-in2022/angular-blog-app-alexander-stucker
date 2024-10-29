@@ -6,7 +6,7 @@ export const blogSchema = z.object({
   contentPreview: z.string(),
   createdAt: z.string(),
   createdByMe: z.boolean(),
-  headerImageUrl: z.string(),
+  headerImageUrl: z.string().optional(),
   id: z.number(),
   likedByMe: z.boolean(),
   likes: z.number(),

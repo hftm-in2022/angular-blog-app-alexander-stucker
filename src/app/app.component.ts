@@ -16,6 +16,7 @@ import { BlogCardComponent } from './blog-card/blog-card.component';
 export class AppComponent implements OnInit {
   title = 'Blogg App Alex';
   blogs: Blog[] = [];
+  fallBackImageUrl = 'https://picsum.photos/800/200';
 
   constructor(private blogService: BlogService) {}
 
@@ -26,7 +27,10 @@ export class AppComponent implements OnInit {
   onGetBlogs(): void {
     this.blogService.getBlogs().subscribe({
       next: (response) => {
-        this.blogs = response;
+        this.blogs = response.map((blog) => ({
+          ...blog,
+          headerImageUrl: blog.headerImageUrl || this.fallBackImageUrl,
+        }));
       },
     });
   }
