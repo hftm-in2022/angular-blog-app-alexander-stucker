@@ -1,22 +1,40 @@
-h1 {
-  margin-bottom: 20px;
+// Fonts
+$font-primary: "Inter", sans-serif;
+
+// Colors
+$color-primary: #324e85;
+$color-text-light: #ffffff;
+
+body {
+  font-family: $font-primary;
+  margin: 0;
+  padding: 0;
 }
 
-.visible-class,
-.hidden-class {
-  margin-top: 20px;
-  margin-bottom: 20px;
+.top-menu {
+  display: flex;
+  align-items: center;
+  background-color: $color-primary;
+  padding: 15px 30px;
+  color: $color-text-light;
+
+  .logo {
+    width: 80px;
+    margin-right: 15px;
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 0;
+  }
 }
 
-.ng-style {
-  margin-bottom: 20px;
-}
-
-mat-card {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-mat-form-field {
-  margin-top: 20px;
+.blogs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 30px;
+  justify-content: center;
 }

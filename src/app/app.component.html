@@ -1,37 +1,23 @@
-<h1>{{ title }}</h1>
-
-<!-- (click) Event Binding -->
-<button mat-raised-button color="primary" (click)="toggleVisibility()">
-  {{ isVisible ? "Text verstecken" : "Text anzeigen" }}
-</button>
-
-<!-- NgIf and ngClass -->
-<div
-  *ngIf="isVisible"
-  [ngClass]="{ 'visible-class': isVisible, 'hidden-class': !isVisible }"
->
-  <p>Dieser Text wird ausgeblendet</p>
+<div class="top-menu">
+  <img
+    class="logo"
+    src="https://cdn-icons-png.flaticon.com/512/9908/9908191.png"
+    alt="Logo"
+  />
+  <h1>{{ title }}</h1>
 </div>
 
-<!-- NgStyle -->
-<mat-card>
-  <div [ngStyle]="{ color: isVisible ? 'green' : 'red' }">
-    {{
-      isVisible ? "Der Text ist ersichtlich" : "Der Text ist nicht ersichtlich"
-    }}
-  </div>
-</mat-card>
-
-<!-- NgFor -->
-<mat-card>
-  <mat-list>
-    <mat-list-item *ngFor="let item of items">{{ item }}</mat-list-item>
-  </mat-list>
-</mat-card>
-
-<!-- NgModel (2-way binding) -->
-<mat-form-field appearance="fill">
-  <mat-label>Textfeld für deinen Text</mat-label>
-  <input matInput [(ngModel)]="inputText" />
-</mat-form-field>
-<p>Du hast eingegeben: {{ inputText }}</p>
+<div class="blogs">
+  @for (blog of blogs; track blog.id) {
+    <app-blog-card
+      [title]="blog.title"
+      [author]="blog.author"
+      [comments]="blog.comments"
+      [contentPreview]="blog.contentPreview"
+      [createdAt]="blog.createdAt"
+      [headerImageUrl]="blog.headerImageUrl"
+      [likes]="blog.likes"
+    >
+    </app-blog-card>
+  }
+</div>
