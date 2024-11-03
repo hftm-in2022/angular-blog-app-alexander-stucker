@@ -1,17 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { BlogService } from './service/blog.service';
+import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
-  let blogServiceMock: jasmine.SpyObj<BlogService>;
-
   beforeEach(async () => {
-    // Create a mock BlogService with the `getBlogs` method
-    blogServiceMock = jasmine.createSpyObj('BlogService', ['getBlogs']);
-
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
-      providers: [{ provide: BlogService, useValue: blogServiceMock }],
+      imports: [AppComponent, RouterOutlet, CommonModule, FormsModule],
     }).compileComponents();
   });
 

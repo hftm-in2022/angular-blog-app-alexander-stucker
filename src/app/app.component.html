@@ -7,17 +7,4 @@
   <h1>{{ title }}</h1>
 </div>
 
-<div class="blogs">
-  @for (blog of blogs; track blog.id) {
-    <app-blog-card
-      [title]="blog.title"
-      [author]="blog.author"
-      [comments]="blog.comments"
-      [contentPreview]="blog.contentPreview"
-      [createdAt]="blog.createdAt"
-      [headerImageUrl]="blog.headerImageUrl"
-      [likes]="blog.likes"
-    >
-    </app-blog-card>
-  }
-</div>
+<router-outlet></router-outlet>
