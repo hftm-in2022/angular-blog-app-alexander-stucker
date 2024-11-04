@@ -1,6 +1,6 @@
 <div class="blog-container">
   @for (blog of model.data; track blog.id) {
-    <mat-card class="blog-card">
+    <mat-card class="blog-card" [routerLink]="['/detail/', blog.id]">
       @if (blog.headerImageUrl) {
         <img
           mat-card-image
