@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BlogDetails, Entries } from '../../core/service/blog.service';
+import { Entries } from '../../core/service/blog.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { AsyncPipe, NgIf } from '@angular/common';
@@ -22,5 +22,4 @@ import { RouterLink } from '@angular/router';
 })
 export class BlogOverviewPageComponent {
   @Input({ required: true }) model!: Entries;
-  @Input() blog!: BlogDetails;
 }
