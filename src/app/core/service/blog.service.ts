@@ -7,10 +7,10 @@ import { environment } from '../../../environments/environment.development';
 const BlogSchema = z.object({
   id: z.number(),
   title: z.string(),
-  contentPreview: z.string().optional(),
+  contentPreview: z.string(),
   author: z.string(),
   likes: z.number(),
-  comments: z.union([z.number(), z.array(z.any())]),
+  comments: z.number(),
   likedByMe: z.boolean(),
   createdByMe: z.boolean(),
   headerImageUrl: z.string().optional(),
@@ -39,7 +39,7 @@ const BlogDetailsSchema = BlogSchema.extend({
   createdAt: z.string(),
   content: z.string(),
   comments: z.array(CommentSchema),
-});
+}).partial({ contentPreview: true });
 
 export type Blog = z.infer<typeof BlogSchema>;
 

@@ -1,5 +1,5 @@
 import { ResolveFn, Routes } from '@angular/router';
-import { Blog, BlogService, Entries } from './core/service/blog.service';
+import { BlogDetails, BlogService, Entries } from './core/service/blog.service';
 import { lastValueFrom } from 'rxjs';
 import { inject } from '@angular/core';
 
@@ -8,7 +8,7 @@ export const entriesResolver: ResolveFn<Entries> = async () => {
   return await lastValueFrom(blogService.getBlogs());
 };
 
-export const blogDetailResolver: ResolveFn<Blog> = (route) => {
+export const blogDetailResolver: ResolveFn<BlogDetails> = (route) => {
   const blogService = inject(BlogService);
   const idParam = route.paramMap.get('id');
   const blogId = Number(idParam);

@@ -1,0 +1,74 @@
+:host {
+  // Fonts
+  // weights
+  $font-heavy: 600;
+  // sizes
+  $font-small: 0.9em;
+  $font-regular: 1em;
+  $font-large: 1.5em;
+
+  // Colors
+  $text-dark: #333333;
+  $text-medium: #555555;
+  $text-light: #777777;
+  $text-muted: #888888;
+  $card-shadow: rgba(0, 0, 0, 0.2);
+
+  .blog-card {
+    width: 400px;
+    margin: 16px;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px $card-shadow;
+    }
+
+    .author-date {
+      display: flex;
+      justify-content: space-between;
+      font-size: $font-small;
+      color: $text-muted;
+      margin: 0 16px 8px;
+    }
+
+    mat-card-title {
+      padding: 0 16px 0 0px;
+      font-size: $font-large;
+      font-weight: $font-heavy;
+      color: $text-dark;
+      margin: 8px 0;
+    }
+
+    mat-card-content {
+      font-size: $font-regular;
+      line-height: 1.6;
+      color: $text-medium;
+      margin-bottom: 20px;
+    }
+
+    .blog-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px 8px 16px;
+    }
+
+    .likes-comments {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: $text-light;
+      font-size: $font-small;
+
+      // Icon styling
+      mat-icon {
+        color: $text-light;
+        vertical-align: middle;
+      }
+    }
+  }
+}
