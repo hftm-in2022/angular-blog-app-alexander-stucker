@@ -1,5 +1,4 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
 
 export const loggingInterceptor: HttpInterceptorFn = (req, next) => {
   console.log('Http request:', {
@@ -9,21 +8,5 @@ export const loggingInterceptor: HttpInterceptorFn = (req, next) => {
     body: req.body,
   });
 
-  return next(req).pipe(
-    tap({
-      next: (event) => {
-        console.log('HTTP response:', {
-          url: req.url,
-          event,
-        });
-      },
-      error: (error) => {
-        console.error('HTTP Request error:', {
-          url: req.url,
-          status: error.status,
-          message: error.message,
-        });
-      },
-    }),
-  );
+  return next(req);
 };

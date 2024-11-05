@@ -5,9 +5,11 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { loggingInterceptor } from './core/interceptors/logging.interceptor';
+import { GlobalErrorHandler } from './core/service/global-error-handler.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    GlobalErrorHandler,
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
     provideAnimationsAsync(),
