@@ -1,0 +1,40 @@
+<mat-card class="blog-card" [routerLink]="['/detail/', blog.id]">
+  @if (blog.headerImageUrl) {
+    <img
+      mat-card-image
+      [src]="blog.headerImageUrl"
+      alt="{{ blog.title }}"
+      class="blog-image"
+    />
+  } @else {
+    <img
+      mat-card-image
+      src="{{ 'https://picsum.photos/seed/' + blog.id + '/800/200' }}"
+      alt="Random Photo"
+      class="blog-image"
+    />
+  }
+
+  <mat-card-header>
+    <mat-card-title class="card-title">{{ blog.title }}</mat-card-title>
+  </mat-card-header>
+
+  <div class="author-date">
+    <span>{{ blog.author }}</span>
+  </div>
+
+  <mat-card-content>
+    <p class="content-preview">{{ blog.contentPreview }}</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <span class="likes-comments">
+      <mat-icon aria-hidden="false" aria-label="Likes icon">thumb_up</mat-icon>
+      <span>{{ blog.likes }}</span>
+      <mat-icon aria-hidden="false" aria-label="Comments icon"
+        >comment</mat-icon
+      >
+      <span>{{ blog.comments }}</span>
+    </span>
+  </mat-card-actions>
+</mat-card>

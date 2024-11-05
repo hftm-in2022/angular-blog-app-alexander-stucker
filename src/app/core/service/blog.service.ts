@@ -26,9 +26,26 @@ const EntriesSchema = z.object({
   maxPageSize: z.number(),
 });
 
+const CommentSchema = z.object({
+  id: z.number(),
+  content: z.string(),
+  author: z.string(),
+  updatedAt: z.string(),
+  createdAt: z.string(),
+});
+
+const BlogDetailsSchema = BlogSchema.extend({
+  updatedAt: z.string(),
+  createdAt: z.string(),
+  content: z.string(),
+  comments: z.array(CommentSchema),
+}).partial({ contentPreview: true });
+
 export type Blog = z.infer<typeof BlogSchema>;
 
 export type Entries = z.infer<typeof EntriesSchema>;
+
+export type BlogDetails = z.infer<typeof BlogDetailsSchema>;
 
 @Injectable({
   providedIn: 'root',
@@ -40,5 +57,11 @@ export class BlogService {
     return this.httpClient
       .get<Entries>(`${environment.serviceUrl}/entries`)
       .pipe(map((entries) => EntriesSchema.parse(entries)));
+  }
+
+  getBlogById(id: number): Observable<BlogDetails> {
+    return this.httpClient
+      .get<BlogDetails>(`${environment.serviceUrl}/entries/${id}`)
+      .pipe(map((blogDetails) => BlogDetailsSchema.parse(blogDetails)));
   }
 }
