@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
@@ -24,5 +24,5 @@ export interface Blog {
   styleUrl: './blog-overview-card.component.scss',
 })
 export class BlogOverviewCardComponent {
-  @Input({ required: true }) blog!: Blog;
+  blog = input.required<Blog>();
 }

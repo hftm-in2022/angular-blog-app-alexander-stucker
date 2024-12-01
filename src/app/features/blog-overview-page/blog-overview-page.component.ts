@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { Entries } from '../../core/service/blog.service';
 import { AsyncPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -12,5 +12,5 @@ import { BlogOverviewCardComponent } from '../../shared/blog-overview-card/blog-
   styleUrl: './blog-overview-page.component.scss',
 })
 export class BlogOverviewPageComponent {
-  @Input({ required: true }) model!: Entries;
+  model = input.required<Entries>();
 }

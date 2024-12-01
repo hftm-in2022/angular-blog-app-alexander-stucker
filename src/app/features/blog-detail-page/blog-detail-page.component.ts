@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { BlogDetails } from '../../core/service/blog.service';
 import { MatIcon } from '@angular/material/icon';
 import { MatCard } from '@angular/material/card';
@@ -12,8 +12,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './blog-detail-page.component.scss',
 })
 export class BlogDetailPageComponent {
-  @Input() id!: number;
-  @Input() blog!: BlogDetails;
+  id = input.required<number>();
+  blog = input.required<BlogDetails>();
 
   showComments = false;
 
