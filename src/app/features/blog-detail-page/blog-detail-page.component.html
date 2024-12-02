@@ -38,9 +38,9 @@
         class="comments-header"
         [class.collapsed]="!showComments"
       >
-        Comments ({{ blog().comments.length }})
+        Comments ({{ selectedComments().length }})
       </h2>
-      @if (showComments) {
+      @if (showComments()) {
         @for (comment of blog().comments; track comment.id) {
           <div class="comment">
             <p>
