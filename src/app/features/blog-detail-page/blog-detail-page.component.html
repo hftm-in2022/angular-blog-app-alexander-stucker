@@ -1,30 +1,30 @@
-@if (blog) {
+@if (blog()) {
   <div class="blog-container">
     <div class="blog-header">
-      <h1 class="blog-title">{{ blog.title }}</h1>
+      <h1 class="blog-title">{{ blog().title }}</h1>
       <p class="blog-meta">
-        By <strong>{{ blog.author }}</strong> | Written: {{ blog.createdAt }} |
-        Last Updated: {{ blog.updatedAt }}
+        By <strong>{{ blog().author }}</strong> | Written:
+        {{ blog().createdAt }} | Last Updated: {{ blog().updatedAt }}
       </p>
     </div>
 
     <div class="blog-content">
-      <p>{{ blog.content }}</p>
+      <p>{{ blog().content }}</p>
     </div>
 
     <div class="blog-footer">
       <div class="likes-comments">
         <div class="icon-item">
           <mat-icon>thumb_up</mat-icon>
-          <span>{{ blog.likes }}</span>
+          <span>{{ blog().likes }}</span>
         </div>
       </div>
 
       <div class="user-info">
-        @if (blog.likedByMe) {
+        @if (blog().likedByMe) {
           <p>You liked this post.</p>
         }
-        @if (blog.createdByMe) {
+        @if (blog().createdByMe) {
           <p>You created this post.</p>
         }
       </div>
@@ -38,10 +38,10 @@
         class="comments-header"
         [class.collapsed]="!showComments"
       >
-        Comments ({{ blog.comments.length }})
+        Comments ({{ selectedComments().length }})
       </h2>
-      @if (showComments) {
-        @for (comment of blog.comments; track comment.id) {
+      @if (showComments()) {
+        @for (comment of blog().comments; track comment.id) {
           <div class="comment">
             <p>
               <Strong>{{ comment.author }} says:</Strong>

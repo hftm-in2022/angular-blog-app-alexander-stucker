@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
@@ -22,7 +22,8 @@ export interface Blog {
   imports: [MatCardModule, MatButtonModule, MatIcon, RouterLink],
   templateUrl: './blog-overview-card.component.html',
   styleUrl: './blog-overview-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogOverviewCardComponent {
-  @Input({ required: true }) blog!: Blog;
+  blog = input.required<Blog>();
 }
