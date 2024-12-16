@@ -45,4 +45,9 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/blog-detail-page/blog-detail-page.routes'),
   },
+  {
+    path: 'add',
+    loadChildren: () => import('./features/add-blog-page/add-blog-page.routes'),
+    canActivate: ['isAuthenticatedGuard'],
+  },
 ];

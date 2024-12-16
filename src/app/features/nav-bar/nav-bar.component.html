@@ -5,4 +5,13 @@
     alt="Logo"
   />
   <h1>{{ title }}</h1>
+
+  <div class="auth-buttons">
+    <button (click)="login()">Login</button>
+    <button (click)="logout()">Logout</button>
+  </div>
+
+  <div class="right-section">
+    <button class="add-blog-btn" [routerLink]="['/add']">+ Add Blog</button>
+  </div>
 </div>
