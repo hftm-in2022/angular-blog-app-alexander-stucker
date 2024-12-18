@@ -3,6 +3,7 @@ import { BlogDetails, BlogService, Entries } from './core/service/blog.service';
 import { LoadingStateService } from './core/service/loading-state.service';
 import { finalize, lastValueFrom } from 'rxjs';
 import { inject } from '@angular/core';
+import { isAuthenticatedGuard } from './core/auth/is-authenticated.guard';
 
 export const entriesResolver: ResolveFn<Entries> = async () => {
   const blogService = inject(BlogService);
@@ -48,5 +49,6 @@ export const routes: Routes = [
   {
     path: 'add',
     loadChildren: () => import('./features/add-blog-page/add-blog-page.routes'),
+    canActivate: [isAuthenticatedGuard],
   },
 ];
