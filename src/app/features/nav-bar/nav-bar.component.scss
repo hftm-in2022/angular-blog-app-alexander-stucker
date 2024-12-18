@@ -1,0 +1,56 @@
+// Fonts
+$font-primary: "Inter", sans-serif;
+
+// Colors
+$color-primary: #324e85;
+$color-text-light: #ffffff;
+$color-button-bg: #22355a;
+$color-button-bg-hover: #6c7da0;
+$color-button-text: #ffffff;
+
+.top-menu {
+  display: flex;
+  align-items: center;
+  background-color: $color-primary;
+  justify-content: space-between;
+  padding: 15px 30px;
+  color: $color-text-light;
+
+  .logo {
+    width: 80px;
+    margin-right: 15px;
+    border-radius: 50%;
+  }
+
+  h1 {
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .right-section {
+    .add-blog-btn {
+      background-color: $color-button-bg;
+      color: $color-button-text;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        background-color 0.3s,
+        transform 0.2s;
+      text-transform: uppercase;
+
+      &:hover {
+        background-color: $color-button-bg-hover;
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(1);
+      }
+    }
+  }
+}
