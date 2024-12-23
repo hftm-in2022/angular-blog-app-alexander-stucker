@@ -4,7 +4,7 @@
   </div>
 
   <div class="blog-content">
-    <form>
+    <form [formGroup]="blogForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="title">Title</label>
         <input
@@ -27,7 +27,13 @@
         ></textarea>
       </div>
 
-      <button type="submit" class="btn btn-primary mt-4">Add Blog Post</button>
+      <button
+        type="submit"
+        class="btn btn-primary mt-4"
+        [disabled]="blogForm.invalid"
+      >
+        Add Blog Post
+      </button>
     </form>
   </div>
 

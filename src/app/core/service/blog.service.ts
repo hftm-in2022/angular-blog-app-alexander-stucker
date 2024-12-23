@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map, Observable, switchMap } from 'rxjs';
 import { z } from 'zod';
 import { environment } from '../../../environments/environment.development';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 const BlogSchema = z.object({
   id: z.number(),
@@ -52,6 +53,7 @@ export type BlogDetails = z.infer<typeof BlogDetailsSchema>;
 })
 export class BlogService {
   httpClient = inject(HttpClient);
+  private oidcSecurityService = inject(OidcSecurityService);
 
   getBlogs(): Observable<Entries> {
     return this.httpClient
@@ -63,5 +65,24 @@ export class BlogService {
     return this.httpClient
       .get<BlogDetails>(`${environment.serviceUrl}/entries/${id}`)
       .pipe(map((blogDetails) => BlogDetailsSchema.parse(blogDetails)));
+  }
+
+  addBlog(blog: {
+    title: string;
+    content: string;
+    headerImageUrl?: string;
+  }): Observable<Blog> {
+    return this.oidcSecurityService.getAccessToken().pipe(
+      switchMap((token) => {
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`,
+        });
+        return this.httpClient.post<Blog>(
+          `${environment.serviceUrl}/entries`,
+          blog,
+          { headers },
+        );
+      }),
+    );
   }
 }
