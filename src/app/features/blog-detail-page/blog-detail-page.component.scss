@@ -1,25 +1,6 @@
+@import "../../../styles.scss";
+
 :host {
-  // Fonts and colors
-  $font-primary: "Inter", sans-serif;
-  $font-small: 0.9em;
-  $font-regular: 1.1em;
-  $font-large: 2em;
-  $font-heavy: 600;
-
-  // Colors
-  $color-primary: #324e85;
-  $color-text-light: #ffffff;
-  $text-dark: #333333;
-  $text-medium: #555555;
-  $text-muted: #888888;
-  $text-highlight: $color-primary;
-  $text-secondary: lighten($color-primary, 10%);
-  $background-card: #ffffff;
-  $background-light: #f7f8fc;
-  $shadow-card: rgba(0, 0, 0, 0.2);
-  $border-color: #e0e0e0;
-  $border-light: #ddd;
-
   .blog-container {
     max-width: 800px;
     margin: 40px auto;
@@ -28,8 +9,8 @@
     box-shadow: 0 6px 24px $shadow-card;
     padding: 20px;
     overflow: hidden;
-    font-family: $font-primary;
-    transition: transform 0.3s;
+    font-family: $font-secondary;
+    @include transition(transform);
   }
 
   .blog-header {
@@ -53,7 +34,7 @@
   .blog-content {
     padding: 25px 35px;
     font-size: $font-regular;
-    color: $text-medium;
+    color: $color-text-medium;
     line-height: 1.6;
 
     p {
@@ -81,10 +62,10 @@
         mat-icon {
           font-size: 1.6rem;
           margin-right: 6px;
-          transition: color 0.3s;
+          @include transition(color);
 
           &:hover {
-            color: $text-secondary;
+            color: $color-secondary;
           }
         }
       }
@@ -97,7 +78,7 @@
         color: lighten($color-text-light, 40%);
 
         &.highlight {
-          color: $text-highlight;
+          color: $color-highlight;
         }
       }
     }
@@ -115,14 +96,14 @@
       font-size: 1.5em;
       color: $color-primary;
       cursor: pointer;
-      transition: color 0.3s;
+      @include transition(color);
 
       &.collapsed {
-        color: $text-muted;
+        color: $color-text-muted;
       }
 
       &:hover {
-        color: $text-highlight;
+        color: $color-highlight;
       }
     }
 
@@ -133,7 +114,7 @@
       border-radius: 8px;
       border: 1px solid $border-color;
       box-shadow: 0 2px 15px $shadow-card;
-      transition: transform 0.3s;
+      @include transition(transform);
 
       p {
         margin: 6px 0;
@@ -145,7 +126,7 @@
 
         small {
           font-size: 0.8em;
-          color: $text-muted;
+          color: $color-text-muted;
         }
       }
     }
@@ -164,12 +145,11 @@
       border-radius: 8px;
       font-size: $font-regular;
       font-weight: $font-heavy;
-      transition:
-        background-color 0.3s,
-        transform 0.3s;
+      @include transition(background-color, transform);
 
       &:hover {
         background-color: lighten($color-primary, 10%);
+        transform: scale(1.1);
       }
     }
   }

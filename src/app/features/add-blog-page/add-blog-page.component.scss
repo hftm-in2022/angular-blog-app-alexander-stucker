@@ -1,21 +1,6 @@
+@import "../../../styles.scss";
+
 :host {
-  // Fonts and colors
-  $font-primary: "Inter", sans-serif;
-  $font-small: 0.9em;
-  $font-regular: 1.1em;
-  $font-large: 2em;
-  $font-heavy: 600;
-
-  $color-primary: #324e85;
-  $color-text-light: #ffffff;
-  $text-dark: #333333;
-  $text-medium: #555555;
-  $text-muted: #888888;
-  $background-card: #ffffff;
-  $background-light: #f7f8fc;
-  $shadow-card: rgba(0, 0, 0, 0.2);
-  $border-color: #e0e0e0;
-
   .blog-container {
     max-width: 800px;
     margin: 40px auto;
@@ -23,7 +8,7 @@
     border-radius: 12px;
     box-shadow: 0 6px 24px $shadow-card;
     padding: 20px;
-    font-family: $font-primary;
+    font-family: $font-secondary;
   }
 
   .blog-header {
@@ -48,7 +33,7 @@
   .blog-content {
     padding: 20px 30px;
     font-size: $font-regular;
-    color: $text-medium;
+    color: $color-text-medium;
 
     .form-group {
       margin-bottom: 15px;
@@ -65,7 +50,7 @@
         font-size: $font-regular;
         border: 1px solid $border-color;
         border-radius: 8px;
-        transition: border-color 0.3s;
+        @include transition(border-color);
 
         &:focus {
           border-color: $color-primary;
@@ -87,16 +72,14 @@
       font-size: $font-regular;
       font-weight: $font-heavy;
       cursor: pointer;
-      transition:
-        background-color 0.3s,
-        transform 0.3s;
+      @include transition(background-color, transform);
 
       &:hover {
         background-color: lighten($color-primary, 10%);
       }
 
       &:disabled {
-        background-color: $text-muted;
+        background-color: $color-text-muted;
         cursor: not-allowed;
       }
     }
@@ -114,9 +97,7 @@
       border-radius: 8px;
       font-size: $font-regular;
       font-weight: $font-heavy;
-      transition:
-        background-color 0.3s,
-        transform 0.3s;
+      @include transition(background-color, transform);
 
       &:hover {
         background-color: lighten($color-primary, 10%);
