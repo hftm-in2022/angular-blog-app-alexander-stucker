@@ -7,7 +7,13 @@
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="false"
   >
-    <mat-toolbar> navigation </mat-toolbar>
+    <mat-toolbar>
+      @if (isAuthenticated()) {
+        <div class="user-info">
+          <span>{{ userName() }}</span>
+        </div>
+      }
+    </mat-toolbar>
     <mat-nav-list>
       @if (!isAuthenticated()) {
         <a mat-list-item (click)="login()" (keyup)="login()" tabindex="0"
@@ -25,7 +31,6 @@
 
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <h1>{{ title }}</h1>
       @if (isHandset$ | async) {
         <button
           type="button"
@@ -36,34 +41,33 @@
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
       }
-      @if (isAuthenticated()) {
-        <div class="user-info">
-          <span>Welcome, {{ userName() }}</span>
+
+      <h1>{{ title }}</h1>
+
+      @if ((isHandset$ | async) === false) {
+        @if (isAuthenticated()) {
+          <div class="user-info">
+            <span>Welcome, {{ userName() }}</span>
+          </div>
+        }
+        <div class="auth-buttons">
+          @if (!isAuthenticated()) {
+            <button class="button-primary" (click)="login()">Login</button>
+          }
+          @if (isAuthenticated()) {
+            <button class="button-primary" (click)="logout()">Logout</button>
+          }
+        </div>
+
+        <div class="right-section">
+          @if (isAuthenticated()) {
+            <button class="add-blog-btn" [routerLink]="['/add']">
+              + Add Blog
+            </button>
+          }
         </div>
       }
 
-      <div class="auth-buttons">
-        @if (!isAuthenticated()) {
-          <button (click)="login()">Login</button>
-        }
-        @if (isAuthenticated()) {
-          <button (click)="logout()">Logout</button>
-        }
-      </div>
-
-      <div class="right-section">
-        @if (isAuthenticated()) {
-          <button class="add-blog-btn" [routerLink]="['/add']">
-            + Add Blog
-          </button>
-        }
-      </div>
-
-      @if (isAuthenticated()) {
-        <div class="user-info">
-          <span>Welcome, {{ userName() }}</span>
-        </div>
-      }
       <div class="toolbar-buttons"></div>
     </mat-toolbar>
     @if (isLoading()) {
