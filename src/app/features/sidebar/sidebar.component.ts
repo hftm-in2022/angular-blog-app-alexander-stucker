@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -40,7 +40,7 @@ export class SidebarComponent {
   isLoading = this.loadingStateService.isLoading;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(Breakpoints.Handset)
+    .observe(['(max-width: 900px)'])
     .pipe(
       map((result) => result.matches),
       shareReplay(),
