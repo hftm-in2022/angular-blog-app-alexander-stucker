@@ -1,0 +1,79 @@
+@import "../../../styles.scss";
+
+.sidenav-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .sidenav {
+    background-color: $background-light;
+    color: $color-text-dark;
+    width: 240px;
+    box-shadow: 0 4px 8px $shadow-card;
+
+    mat-toolbar {
+      background-color: $color-primary;
+      color: $color-text-light;
+      font-size: 1.2em;
+      font-weight: $font-heavy;
+      padding: 16px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  mat-sidenav-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    mat-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      background-color: $color-primary;
+      color: $color-text-light;
+
+      h1 {
+        font-size: 1.8em;
+        font-weight: $font-heavy;
+        margin: 0;
+      }
+
+      button[mat-icon-button] {
+        mat-icon {
+          color: $color-text-light;
+          font-size: 24px;
+        }
+      }
+
+      .right-section {
+        .add-blog-btn {
+          display: inline-block;
+          padding: 12px 24px;
+          background-color: $color-primary;
+          color: $color-text-light;
+          border: 2px solid darken($color-primary, 15%);
+          border-radius: 8px;
+          font-size: $font-regular;
+          font-weight: $font-heavy;
+          text-transform: uppercase;
+          cursor: pointer;
+          @include transition(background-color, transform);
+
+          &:hover {
+            background-color: lighten($color-primary, 10%);
+            transform: scale(1.1);
+          }
+
+          &:active {
+            transform: scale(1);
+          }
+        }
+      }
+    }
+  }
+}
