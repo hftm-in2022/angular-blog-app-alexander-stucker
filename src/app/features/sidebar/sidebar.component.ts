@@ -6,8 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, shareReplay, takeUntil } from 'rxjs/operators';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 import { LoadingStateService } from '../../core/service/loading-state.service';
@@ -34,9 +34,9 @@ export class SidebarComponent {
   isAuthenticated = signal<boolean>(false);
 
   private breakpointObserver = inject(BreakpointObserver);
-  private oidcSecurityService: OidcSecurityService =
-    inject(OidcSecurityService);
+  private oidcSecurityService = inject(OidcSecurityService);
   private loadingStateService = inject(LoadingStateService);
+  private destroy$ = new Subject<void>();
   isLoading = this.loadingStateService.isLoading;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -47,19 +47,29 @@ export class SidebarComponent {
     );
 
   constructor() {
-    this.oidcSecurityService.checkAuth().subscribe(({ isAuthenticated }) => {
-      this.isAuthenticated.set(isAuthenticated);
+    this.oidcSecurityService
+      .checkAuth()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(({ isAuthenticated }) => {
+        this.isAuthenticated.set(isAuthenticated);
 
-      if (isAuthenticated) {
-        this.oidcSecurityService.userData$.subscribe((userData) => {
-          this.userName.set(
-            userData?.userData?.preferred_username || 'Unknown User',
-          );
-        });
-      } else {
-        this.userName.set(null);
-      }
-    });
+        if (isAuthenticated) {
+          this.oidcSecurityService.userData$
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((userData) => {
+              this.userName.set(
+                userData?.userData?.preferred_username || 'Unknown User',
+              );
+            });
+        } else {
+          this.userName.set(null);
+        }
+      });
+  }
+
+  ngonDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   login() {
