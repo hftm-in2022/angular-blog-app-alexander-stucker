@@ -68,7 +68,7 @@ body {
   padding: 12px 24px;
   background-color: $color-primary;
   color: $color-text-light;
-  border: none;
+  border: 2px solid darken($color-primary, 15%);
   border-radius: 8px;
   font-size: $font-regular;
   font-weight: $font-heavy;
