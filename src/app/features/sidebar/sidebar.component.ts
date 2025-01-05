@@ -40,7 +40,7 @@ export class SidebarComponent {
   isLoading = this.loadingStateService.isLoading;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
-    .observe(['(max-width: 900px)'])
+    .observe(['(max-width: 912px)'])
     .pipe(
       map((result) => result.matches),
       shareReplay(),
