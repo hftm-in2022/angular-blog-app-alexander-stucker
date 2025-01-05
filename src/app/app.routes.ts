@@ -51,4 +51,8 @@ export const routes: Routes = [
     loadChildren: () => import('./features/add-blog-page/add-blog-page.routes'),
     canActivate: [isAuthenticatedGuard],
   },
+  {
+    path: '**',
+    redirectTo: 'overview',
+  },
 ];
