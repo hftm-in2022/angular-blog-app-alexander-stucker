@@ -75,7 +75,7 @@ export class BlogService {
     return this.oidcSecurityService.getAccessToken().pipe(
       switchMap((token) => {
         const headers = new HttpHeaders({
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, // Dies kann mittels secure route interceptor gemacht werden https://angular-auth-oidc-client.com/docs/documentation/configuration#secureroutes
         });
         return this.httpClient.post<Blog>(
           `${environment.serviceUrl}/entries`,

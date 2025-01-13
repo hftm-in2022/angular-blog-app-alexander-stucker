@@ -7,7 +7,7 @@ import { BlogOverviewCardComponent } from '../../shared/blog-overview-card/blog-
 @Component({
   selector: 'app-blog-overview-page',
   standalone: true,
-  imports: [AsyncPipe, RouterLink, BlogOverviewCardComponent],
+  imports: [AsyncPipe, RouterLink, BlogOverviewCardComponent], // unbenutzte imports löschen
   templateUrl: './blog-overview-page.component.html',
   styleUrl: './blog-overview-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

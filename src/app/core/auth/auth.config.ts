@@ -16,7 +16,7 @@ export const authProviders = [
       silentRenew: true,
       silentRenewUrl: window.location.origin + '/silent-renew.html',
       renewTimeBeforeTokenExpiresInSeconds: 10,
-      secureRoutes: [environment.serviceUrl],
+      secureRoutes: [environment.serviceUrl], // die Secure Route sind hier schon konfiguriert, und das Token wird damit autamtisch an den Request Header angehängt
     },
   }),
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

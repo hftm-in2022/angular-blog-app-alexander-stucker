@@ -34,11 +34,12 @@ export class AddBlogPageComponent {
     if (this.blogForm.valid) {
       const newBlog = this.blogForm.value;
       this.blogService.addBlog(newBlog).subscribe({
+        // besser mittels Redux like Pattern oder Promise implementieren
         next: () => {
           this.router.navigate(['/overview']);
         },
         error: (err) => {
-          console.error('Failed to create blog:', err);
+          console.error('Failed to create blog:', err); // hier sollte auf eine Fehlerseite navigiert werden oder ein Toast gezeigt werden, um dem Benutzer anzuzeigen, dass es nicht geklappt hat.
         },
       });
     }

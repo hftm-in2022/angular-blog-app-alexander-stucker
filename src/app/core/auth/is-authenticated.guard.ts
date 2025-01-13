@@ -15,6 +15,7 @@ export const isAuthenticatedGuard: CanActivateFn = () => {
 
   return new Promise<boolean>((resolve) => {
     oidcSecurityService.checkAuth().subscribe(({ isAuthenticated }) => {
+      // hier sollte keine subscription gemacht werden. Besser ein Observable zurückgeben
       if (!isAuthenticated) {
         router.navigate(['']);
         resolve(false);

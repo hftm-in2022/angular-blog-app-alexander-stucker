@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -28,7 +28,8 @@ import { LoadingStateService } from '../../core/service/loading-state.service';
     RouterOutlet,
   ],
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnDestroy {
+  // Die Sidebar Component gehört in den Core
   title = 'Blogg App Alex';
   userName = signal<string | null>(null);
   isAuthenticated = signal<boolean>(false);
@@ -57,6 +58,7 @@ export class SidebarComponent {
           this.oidcSecurityService.userData$
             .pipe(takeUntil(this.destroy$))
             .subscribe((userData) => {
+              // subscribe innerhalb subscribe ist gar nicht gut. Unbedingt vermeiden
               this.userName.set(
                 userData?.userData?.preferred_username || 'Unknown User',
               );
@@ -66,8 +68,8 @@ export class SidebarComponent {
         }
       });
   }
-
-  ngonDestroy() {
+  ngOnDestroy(): void {
+    // On Destroy nicht korrekt implementiert
     this.destroy$.next();
     this.destroy$.complete();
   }

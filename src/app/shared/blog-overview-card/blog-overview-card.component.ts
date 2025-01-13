@@ -4,7 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 
-export interface Blog {
+export type Blog = {
+  // Bitte typen anstelle Interfaces benutzen
   author: string;
   comments: number;
   headerImageUrl?: string;
@@ -14,7 +15,7 @@ export interface Blog {
   likedByMe: boolean;
   likes: number;
   title: string;
-}
+};
 
 @Component({
   selector: 'app-blog-overview-card',
