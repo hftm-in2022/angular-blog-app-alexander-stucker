@@ -1,4 +1,4 @@
-<div class="blog-container">
+<div class="blog-container" data-testid="blog-container">
   @for (blog of model().data; track blog.id) {
     <app-blog-overview-card [blog]="blog"></app-blog-overview-card>
   }
