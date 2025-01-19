@@ -1,10 +1,15 @@
-<mat-card class="blog-card" [routerLink]="['/detail/', blog().id]">
+<mat-card
+  class="blog-card"
+  [routerLink]="['/detail/', blog().id]"
+  data-testid="blog-card"
+>
   @if (blog().headerImageUrl) {
     <img
       mat-card-image
       [src]="blog().headerImageUrl"
       alt="{{ blog().title }}"
       class="blog-image"
+      data-testid="blog-header-image"
     />
   } @else {
     <img
@@ -12,29 +17,42 @@
       src="{{ 'https://picsum.photos/seed/' + blog().id + '/800/200' }}"
       alt="Random Photo"
       class="blog-image"
+      data-testid="blog-placeholder-image"
     />
   }
 
   <mat-card-header>
-    <mat-card-title class="card-title">{{ blog().title }}</mat-card-title>
+    <mat-card-title class="card-title" data-testid="blog-title">{{
+      blog().title
+    }}</mat-card-title>
   </mat-card-header>
 
-  <div class="author-date">
+  <div class="author-date" data-testid="blog-author">
     <span>{{ blog().author }}</span>
   </div>
 
   <mat-card-content>
-    <p class="content-preview">{{ blog().contentPreview }}</p>
+    <p class="content-preview" data-testid="blog-content-preview">
+      {{ blog().contentPreview }}
+    </p>
   </mat-card-content>
 
   <mat-card-actions>
-    <span class="likes-comments">
-      <mat-icon aria-hidden="false" aria-label="Likes icon">thumb_up</mat-icon>
-      <span>{{ blog().likes }}</span>
-      <mat-icon aria-hidden="false" aria-label="Comments icon"
+    <span class="likes-comments" data-testid="blog-likes-comments">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Likes icon"
+        data-testid="blog-likes-icon"
+        >thumb_up</mat-icon
+      >
+      <span data-testid="blog-likes-count">{{ blog().likes }}</span>
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Comments icon"
+        data-testid="blog-comments-icon"
         >comment</mat-icon
       >
-      <span>{{ blog().comments }}</span>
+      <span data-testid="blog-comments-count">{{ blog().comments }}</span>
     </span>
   </mat-card-actions>
 </mat-card>
